@@ -20,16 +20,13 @@ import javax.annotation.Resource;
  */
 
 @Service
-public class GetUserInfoServiceImpl implements GetUserInfoService{
+public class GetUserInfoServiceImpl implements GetUserInfoService {
 
     @Autowired
     protected MVCMybatisDemoUserMapper mVCMybatisDemoUserMapper;
 
     @Override
-    public void getUserInfoById(String id, Model model)
-    {
-
-
+    public void getUserInfoById(String id, Model model) {
         //search by id, get UserInfo
         MVCMybatisDemoUser user = mVCMybatisDemoUserMapper.queryUserInfo(id);
         model.addAttribute("name", user.getId())
@@ -37,4 +34,11 @@ public class GetUserInfoServiceImpl implements GetUserInfoService{
                 .addAttribute("height", user.getHeight())
                 .addAttribute("weight", user.getWeight());
     }
+
+    @Override
+    public MVCMybatisDemoUser getUserInfoById(String id) {
+        //search by id, get UserInfo
+        return mVCMybatisDemoUserMapper.queryUserInfo(id);
+    }
+
 }
